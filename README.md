@@ -1,6 +1,6 @@
 # Image to Text Conversion with OCR
 
-This project is a Image Processing that converts images to text using Optical Character Recognition (OCR). By leveraging the `pytesseract` library, the app processes uploaded images, extracts text, and displays it in a user-friendly format.
+This project is an Image Processing that converts images to text using Optical Character Recognition (OCR). By leveraging the `pytesseract` library, the app processes uploaded images, extracts text, and displays it in a user-friendly format.
 
 ## Features
 - Upload an image for text extraction.
