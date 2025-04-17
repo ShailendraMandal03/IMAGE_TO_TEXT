@@ -32,6 +32,9 @@ def get_string(img_path):
     dilated = cv2.dilate(image, np.ones((7, 7), np.uint8))
     bg = cv2.medianBlur(dilated, 21)
     enhanced = 255 - cv2.absdiff(image, bg)
+
+    kernel = np.array([[0, -1, 0], [-1, 5,-1], [0, -1, 0]])
+    enhanced = cv2.filter2D(image, -1, kernel)
     
     image=enhanced
 
