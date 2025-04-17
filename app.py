@@ -29,15 +29,11 @@ def get_string(img_path):
     image = cv2.resize(image, None, fx=1.5, fy=1.5, interpolation=cv2.INTER_CUBIC)
     image = cv2.cvtColor(image, cv2.COLOR_BGR2GRAY)
 
-    rgb_planes = cv2.split(image)
-    result_planes = []
-    result_norm_planes = []
-    for plane in rgb_planes:
-        dilated_img = cv2.dilate(plane, np.ones((7, 7), np.uint8))
-        bg_img = cv2.medianBlur(dilated_img, 21)
-        diff_img = 255 - cv2.absdiff(plane, bg_img)
-        result_planes.append(diff_img)
-    image = cv2.merge(result_planes)
+    dilated = cv2.dilate(image, np.ones((7, 7), np.uint8))
+    bg = cv2.medianBlur(dilated, 21)
+    enhanced = 255 - cv2.absdiff(image, bg)
+    
+    image=enhanced
 
     kernel = np.ones((1, 1), np.uint8)
     image = cv2.dilate(image, kernel, iterations=1)
