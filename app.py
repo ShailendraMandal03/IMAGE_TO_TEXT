@@ -33,10 +33,12 @@ def get_string(img_path):
     bg = cv2.medianBlur(dilated, 21)
     enhanced = 255 - cv2.absdiff(image, bg)
 
-    kernel = np.array([[0, -1, 0], [-1, 5,-1], [0, -1, 0]])
-    enhanced = cv2.filter2D(image, -1, kernel)
+    blurred = cv2.GaussianBlur(image, (5, 5), 0)
+    mask = cv2.subtract(enhanced, blurred)
+
+    enhanced_img=cv2.add(enhanced, mask)
     
-    image=enhanced
+    image=enhanced_img
 
     kernel = np.ones((1, 1), np.uint8)
     image = cv2.dilate(image, kernel, iterations=1)
